@@ -11,12 +11,12 @@
                 <form class="max-w-sm mx-auto py-10 mb-20" @submit.prevent="storePost">
                     <div class="mb-5">
                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Your title</label>
-                        <input x-model="title" type="title" id="title"
+                        <input x-model="title" type="text" id="title" name="title"
                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                placeholder="title for your post"/>
-                        @error('title')
-                            {{ $message }}
-                        @enderror
+                        @if($errors->has('title'))
+                            <p class="text-red-500 text-xs italic" role="alert">{{ $errors->first('title') }}</p>
+                        @endif
                     </div>
                     <div class="mb-5">
                         <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Content</label>
@@ -91,15 +91,20 @@
                     })
                         .then((response) => {
                             console.log(response);
-                            this.posts.push(response.data.post);
+                            // this.posts.push(response.data.post);
+                            this.loadPosts();
                         })
                         .catch((error) => {
-                            console.log(error);
+                            // console.log(error);
+                            this.handleError(error.response.data.errors);
                         });
                 },
 
-                handleError(error) {
-                    console.log(error);
+                handleError(errors) {
+                    for (const [key, value] of Object.entries(errors)) {
+                        document.getElementById(key).classList.add('border-red-500')
+                        document.getElementById(key).after(value[0])
+                    }
                 },
             }))
         })

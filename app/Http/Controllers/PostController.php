@@ -40,6 +40,7 @@ class PostController extends Controller
             $attributes = $request->validated();
             $attributes['user_id'] = Auth::user()->id;
             $post = Post::create($attributes);
+
             return response()->json([
                 'post' => $post,
                 'message' => 'Post created successfully',

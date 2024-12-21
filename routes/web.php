@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -27,4 +28,7 @@ Route::middleware([
     // Users
     Route::get('get-users', [UserController::class, 'getUsers']);
     Route::resource('users', UserController::class);
+    // Permissions
+    Route::get('get-permissions', [PermissionController::class, 'getPermissions']);
+    Route::resource('permissions', PermissionController::class);
 });

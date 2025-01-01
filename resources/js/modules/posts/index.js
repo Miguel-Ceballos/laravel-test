@@ -1,8 +1,11 @@
 Alpine.data('list_post', () => ({
     posts: [],
-    title: '',
-    content: '',
-    image: '',
+    formData: {
+        title: '',
+        content: '',
+        image: '',
+    },
+    errors: [],
 
     init() {
         this.loadPosts();
@@ -11,7 +14,6 @@ Alpine.data('list_post', () => ({
     loadPosts() {
         axios.get('/get-posts')
             .then((response) => {
-                console.log(response);
                 this.posts = response.data.posts;
             })
             .catch((error) => {
@@ -20,26 +22,29 @@ Alpine.data('list_post', () => ({
     },
 
     storePost() {
+        this.errors = {};
+
         axios.post('/posts', {
-            title: this.title,
-            content: this.content,
-            image: this.image,
+            title: this.formData.title,
+            content: this.formData.content,
+            image: this.formData.image,
         })
             .then((response) => {
-                console.log(response);
-                // this.posts.push(response.data.post);
                 this.loadPosts();
+                this.resetForm();
             })
             .catch((error) => {
-                // console.log(error);
-                this.handleError(error.response.data.errors);
+                this.errors = error.response.data.errors;
+                this.resetForm();
             });
     },
-
-    handleError(errors) {
-        for (const [key, value] of Object.entries(errors)) {
-            document.getElementById(key).classList.add('border-red-500')
-            document.getElementById(key).after(value[0])
+    clearError(field){
+        delete this.errors[field];
+    },
+    resetForm(){
+        this.errors = {};
+        for (let formDataKey in this.formData) {
+            this.formData[formDataKey] = '';
         }
     },
 }))

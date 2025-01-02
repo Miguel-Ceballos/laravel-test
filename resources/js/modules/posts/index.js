@@ -5,7 +5,7 @@ Alpine.data('list_post', () => ({
         content: '',
         image: '',
     },
-    errors: [],
+    errors: {},
 
     init() {
         this.loadPosts();
@@ -35,7 +35,6 @@ Alpine.data('list_post', () => ({
             })
             .catch((error) => {
                 this.errors = error.response.data.errors;
-                this.resetForm();
             });
     },
     clearError(field){

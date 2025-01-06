@@ -35,7 +35,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    protected $guard_name = ['web', 'ventas', 'produccion', 'optico', 'calidad'];
+    protected $guard_name = ['web', 'ventas', 'produccion', 'optico', 'calidad', 'diseño', 'general', 'electroformado', 'sistemas'];
 
     /**
      * The attributes that should be hidden for serialization.

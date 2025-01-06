@@ -25,6 +25,10 @@
                             <option value="produccion">Produccion</option>
                             <option value="optico">Optico</option>
                             <option value="calidad">Calidad</option>
+                            <option value="diseño">Diseño</option>
+                            <option value="general">General</option>
+                            <option value="electroformado">Electroformado</option>
+                            <option value="sistemas">Sistemas</option>
                         </select>
                     </div>
                     <button type="submit"

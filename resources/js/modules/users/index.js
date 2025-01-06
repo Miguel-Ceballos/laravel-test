@@ -6,6 +6,7 @@ Alpine.data('list_user', () => ({
         email: '',
         role: '',
     },
+    isManager: null,
 
     init() {
         this.loadUsers();
@@ -17,6 +18,18 @@ Alpine.data('list_user', () => ({
             .then((response) => {
                 console.log(response);
                 this.users = response.data.users;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
+    getUser(id){
+        axios.get(`/users/${id}`)
+            .then((response) => {
+                console.log(response);
+                this.formData.name = response.data.user.name;
+                this.formData.email = response.data.user.email;
+                this.isManager = response.data.isManager;
             })
             .catch((error) => {
                 console.log(error);

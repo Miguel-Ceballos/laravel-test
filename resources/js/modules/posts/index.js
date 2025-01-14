@@ -1,5 +1,6 @@
 Alpine.data('list_post', () => ({
     posts: [],
+    isSelected: null,
     formData: {
         title: '',
         content: '',
@@ -9,6 +10,9 @@ Alpine.data('list_post', () => ({
 
     init() {
         this.loadPosts();
+    },
+    print(){
+        console.log(this.isSelected);
     },
 
     loadPosts() {

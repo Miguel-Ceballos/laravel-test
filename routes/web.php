@@ -4,6 +4,8 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Livewire\Mangas\MangasModule;
+use App\Livewire\Posts\PostsModule;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,4 +33,7 @@ Route::middleware([
     // Permissions
     Route::get('get-permissions', [PermissionController::class, 'getPermissions']);
     Route::resource('permissions', PermissionController::class);
+
+    Route::get('/mangas-module', MangasModule::class)->name('mangas-module');
+    Route::get('/posts-module', PostsModule::class)->name('posts-module');
 });

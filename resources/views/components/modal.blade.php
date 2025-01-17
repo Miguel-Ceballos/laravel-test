@@ -45,7 +45,7 @@ $maxWidth = [
             <div class="fixed right-2 top-2 hover:cursor-pointer text-gray-400 hover:text-gray-600" wire:click="showModal = false">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </div>
-            <div class="font-bold text-xl text-gray-900">
+            <div class="font-black text-xl text-gray-900">
                 {{ $title }}
             </div>
             <div class="my-2 mx-auto">

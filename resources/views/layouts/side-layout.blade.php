@@ -40,8 +40,6 @@
 
 <div>
 
-@livewire('navigation-menu')
-
 {{--    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">--}}
 {{--        <div class="px-3 py-3 lg:px-5 lg:pl-3">--}}
 {{--            <div class="flex items-center justify-between">--}}
@@ -153,7 +151,8 @@
         </div>
     </aside>
 
-    <div class="p-4 sm:ml-64">
+    <div class="py-0 px-4 sm:ml-64">
+        @livewire('navigation-menu')
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div class="flex mx-auto my-4">
                 <main>

@@ -10,30 +10,30 @@ class RolesModule extends Component
 {
 
     public $showModal = false;
-
-    public $roles;
+    public $search;
 
     public StoreRoleForm $roleForm;
 
     public function render()
     {
-        return view('livewire.roles.roles-module');
-    }
-
-    public function mount()
-    {
-        $this->roles = Role::all()->toArray();
+        $roles = $this->getRoles();
+        return view('livewire.roles.roles-module', [
+            'roles' => $roles,
+        ]);
     }
 
     public function saveRole()
     {
         $this->roleForm->save();
         $this->reset('showModal');
-        $this->getRoles();
     }
 
     public function getRoles()
     {
-        $this->roles = Role::all()->toArray();
+        return Role::orderBy('id', 'desc')
+            ->when($this->search, function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->get();
     }
 }

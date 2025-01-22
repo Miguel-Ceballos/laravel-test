@@ -2,7 +2,10 @@
 
 namespace App\Livewire\Roles;
 
+use App\Jobs\CreateMailRole;
 use App\Livewire\Forms\Roles\StoreRoleForm;
+use App\Mail\RoleCreated;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
@@ -26,6 +29,8 @@ class RolesModule extends Component
     {
         $this->roleForm->save();
         $this->reset('showModal');
+        session()->flash('success', 'Role created successfully');
+        CreateMailRole::dispatch();
     }
 
     public function getRoles()

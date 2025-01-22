@@ -1,6 +1,16 @@
-<div>
+<div class="w-full">
     <h1 class="font-black text-gray-400 mb-4">HELLO FROM ROLES MODULE!</h1>
 
+    @if(session()->has('success'))
+        <div x-data="{ show: true }"
+             x-show="show"
+             x-transition
+             x-init="setTimeout(() => show = false, 3000)"
+        class="fixed top-0 right-0 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+        role="alert">
+        {{ session('success') }}
+</div>
+@endif
 
     <div class="flex items-center justify-between gap-2">
         <div>

@@ -18,4 +18,11 @@ class PostsModule extends Component
     {
         return view('livewire.posts.posts-module');
     }
+
+    public function savePost()
+    {
+        $this->formData->storePost();
+//        $this->reset('showModal');
+        session()->flash('success', 'Post created successfully');
+    }
 }

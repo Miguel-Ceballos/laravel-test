@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello world, a role has been created</h1>
+    <h1>Hello world, a post has been created</h1>
+    <p>title: {{ $post->title }}</p>
+    <p>content: {{ $post->content }}</p>
 </body>
 </html>
 

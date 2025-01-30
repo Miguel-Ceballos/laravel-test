@@ -27,10 +27,11 @@ class RolesModule extends Component
 
     public function saveRole()
     {
+
         $this->roleForm->save();
         $this->reset('showModal');
         session()->flash('success', 'Role created successfully');
-        CreateMailRole::dispatch();
+//        CreateMailRole::dispatch();
     }
 
     public function getRoles()

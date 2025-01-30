@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms\Roles;
 
+use App\Events\Roles\RoleCreated;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Spatie\Permission\Models\Role;
@@ -15,7 +16,8 @@ class StoreRoleForm extends Form
     {
         $attributes = $this->validate();
 //        dd($attributes);
-        Role::create(['name' => $attributes['name'], 'guard_name' => $attributes['area']]);
+        $role =Role::create(['name' => $attributes['name'], 'guard_name' => $attributes['area']]);
+        RoleCreated::dispatch($role);
     }
 
     public function rules()

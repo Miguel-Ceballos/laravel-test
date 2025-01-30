@@ -1,7 +1,7 @@
 @props(['disabled' => false, 'action' => ''])
 
 @php
-    $classes = 'w-full disabled:bg-gray-100 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-sm';
+    $classes = 'w-full disabled:bg-gray-100 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-lg shadow-xs';
 @endphp
 
 {{--<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => $classes]) !!}>--}}

@@ -86,6 +86,9 @@
                             class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Area
                         </th>
+                        <th scope="col">
+                            Actions
+                        </th>
                     </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
@@ -105,6 +108,12 @@
                                     {{ $role->guard_name }}
                                 </div>
                             </td>
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                <livewire:children
+                                    wire:key="role-{{$role->id}}"
+                                    :role="$role"
+                                />
+                            </td>
                         </tr>
                         @empty
                         <tr>
@@ -119,4 +128,5 @@
             </div>
         </div>
     </div>
+    {{$roles->links()}}
 </div>

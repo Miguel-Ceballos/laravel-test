@@ -16,8 +16,8 @@ class StoreRoleForm extends Form
     {
         $attributes = $this->validate();
 //        dd($attributes);
-        $role =Role::create(['name' => $attributes['name'], 'guard_name' => $attributes['area']]);
-        RoleCreated::dispatch($role);
+        $role = Role::create(['name' => $attributes['name'], 'guard_name' => $attributes['area']]);
+//        RoleCreated::dispatch($role);
     }
 
     public function rules()

@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,12 +12,14 @@ class NewPost extends Notification
 {
     use Queueable;
 
+//    public Post $post;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public Post $post)
     {
-        //
+//        $this->post = $post;
     }
 
     /**
@@ -26,7 +29,7 @@ class NewPost extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -34,10 +37,12 @@ class NewPost extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $url = url('/posts-module');
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('SE HA CREADO UN POST')
+                    ->line('POST: ' . $this->post->title)
+                    ->action('Ver Post', $url)
+                    ->line('Hola mundo!');
     }
 
     /**
@@ -49,6 +54,16 @@ class NewPost extends Notification
     {
         return [
             //
+        ];
+    }
+
+    public function toDatabase(object $notifiable): array
+    {
+        return [
+            'post_id' => $this->post->id,
+            'user_id' => $this->post->user_id,
+            'title' => $this->post->title,
+            'created_at' => $this->post->created_at,
         ];
     }
 }

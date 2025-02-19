@@ -15,6 +15,7 @@ class RolesModule extends Component
 {
     use WithPagination;
     public $showModal = false;
+    public $showModalTabs = false;
     public $search;
 
 //    public $roles;

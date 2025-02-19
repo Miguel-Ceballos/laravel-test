@@ -3,6 +3,7 @@
 <div {{ $attributes->merge(['class' => '']) }}>
     <div class="mt-3">
         <form wire:submit="{{ $submit }}">
+            @csrf
             <div class="py-2 {{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }}">
                 {{ $form }}
             </div>

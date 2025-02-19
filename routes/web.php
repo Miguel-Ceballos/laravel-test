@@ -45,5 +45,5 @@ Route::middleware([
     Route::get('/mangas-module', MangasModule::class)->name('mangas-module');
 
     // Notifications
-    Route::get('/notifications', NotificationController::class);
+    Route::get('/notifications', NotificationController::class)->name('notifications');
 });

@@ -86,16 +86,25 @@
                 <div class="ms-3 relative">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <div class="flex items-center gap-2 hover:cursor-pointer">
-                                    <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-hidden focus:border-gray-300 transition">
-                                        <img class="size-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                                    </button>
-                                    <span class="ext-gray-700">{{ Auth::user()->name }}</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down text-gray-500"><path d="m6 9 6 6 6-6"/></svg>
+                            <div class="flex items-center gap-2 hover:cursor-pointer">
+                                <div>
+                                    <a href="{{route('notifications')}}" class="relative inline-flex items-center p-2 text-sm font-medium text-center text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+                                        <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                                            {{ Auth::user()->unreadNotifications->count() }}
+                                        </div>
+                                    </a>
                                 </div>
-                            @else
-                                <span class="inline-flex rounded-md">
+                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                    <div class="flex items-center gap-2 hover:cursor-pointer">
+                                        <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-hidden focus:border-gray-300 transition">
+                                            <img class="size-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                        </button>
+                                        <span class="ext-gray-700">{{ Auth::user()->name }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down text-gray-500"><path d="m6 9 6 6 6-6"/></svg>
+                                    </div>
+                                @else
+                                    <span class="inline-flex rounded-md">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-hidden focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                         {{ Auth::user()->name }}
 
@@ -104,7 +113,8 @@
                                         </svg>
                                     </button>
                                 </span>
-                            @endif
+                                @endif
+                            </div>
                         </x-slot>
 
                         <x-slot name="content">

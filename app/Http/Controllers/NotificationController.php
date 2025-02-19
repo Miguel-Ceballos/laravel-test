@@ -12,6 +12,8 @@ class NotificationController extends Controller
     public function __invoke(Request $request)
     {
         $notifications = auth()->user()->unreadNotifications;
+        // Mark all notifications as read when the user visits the notifications page.
+//        auth()->user()->unreadNotifications->markAsRead();
         return view('notifications.index', [
             'notifications' => $notifications,
         ]);

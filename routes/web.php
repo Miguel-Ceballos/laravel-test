@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
@@ -42,4 +43,7 @@ Route::middleware([
     Route::get('/usuarios-module', UsuariosModule::class)->name('usuarios-module');
     Route::get('/permisos-module', PermisosModule::class)->name('permisos-module');
     Route::get('/mangas-module', MangasModule::class)->name('mangas-module');
+
+    // Notifications
+    Route::get('/notifications', NotificationController::class);
 });

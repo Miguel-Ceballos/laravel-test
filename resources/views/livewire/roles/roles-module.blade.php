@@ -157,6 +157,8 @@
                                 <livewire:children
                                     wire:key="role-{{$role->id}}"
                                     :role="$role"
+                                    @saved="$refresh()"
+{{--                                    @saved="getRoles"--}}
                                 />
                             </td>
                         </tr>

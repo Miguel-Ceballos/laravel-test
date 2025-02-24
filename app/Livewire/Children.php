@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\UpdateRoleForm;
+use Livewire\Attributes\Modelable;
 use Livewire\Component;
 
 class Children extends Component
@@ -27,7 +28,7 @@ class Children extends Component
     public function updateRoleCaca()
     {
         $this->updateRole->save();
-        $this->dispatch('role-updated');
+        $this->dispatch('saved');
         $this->reset('showModalUpdate', 'role');
         $this->updateRole->reset();
         session()->flash('success', 'Role updated successfully');
